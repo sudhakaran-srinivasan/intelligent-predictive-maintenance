@@ -137,8 +137,7 @@ optimization.
 
 ## Team
 
-Team project developed collaboratively by four graduate students in
-Applied Artificial Intelligence.
+
 
 ## License
 
