@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# Local editor settings
+.vscode/
+.idea/
+
+# Generated model artifacts
+outputs/models/*.pth
+outputs/models/*.pt
+outputs/models/*.pkl
+outputs/models/*.joblib
+
+# Optional: temporary generated files
+outputs/processed/*.tmp
+outputs/reports/*.tmp

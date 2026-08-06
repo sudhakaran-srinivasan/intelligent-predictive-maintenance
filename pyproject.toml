@@ -1,0 +1,18 @@
+[project]
+name = "intelligent-predictive-maintenance"
+version = "0.1.0"
+description = "End-to-end predictive maintenance for turbofan engines using machine learning, deep learning, and Remaining Useful Life prediction."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+
+dependencies = [
+    "ipykernel>=7.2.0,<8",
+    "matplotlib>=3.11.0,<4",
+    "numpy>=2.4.6,<3",
+    "pandas>=2.3.3,<3",
+    "scikit-learn>=1.9.0,<2",
+    "seaborn>=0.13.2,<1",
+    "shap>=0.51.0,<1",
+    "torch>=2.13.0,<3",
+    "xgboost>=3.2.0,<4",
+]
