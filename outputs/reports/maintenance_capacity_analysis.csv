@@ -1,0 +1,6 @@
+capacity,total_critical,total_high,total_medium,total_low,total_high_or_critical,eligible_engines,scheduled_engines,unused_capacity,critical_scheduled,high_scheduled,high_or_critical_scheduled,manual_reviews,maximum_scheduled_predicted_rul
+5,9,14,14,63,23,23,5,0,5,0,5,0,6.801623821258545
+10,9,14,14,63,23,23,10,0,9,1,10,0,16.981056213378906
+15,9,14,14,63,23,23,15,0,9,6,15,0,23.276763916015625
+20,9,14,14,63,23,23,20,0,9,11,20,0,27.777950286865234
+30,9,14,14,63,23,23,23,7,9,14,23,0,29.729036331176758

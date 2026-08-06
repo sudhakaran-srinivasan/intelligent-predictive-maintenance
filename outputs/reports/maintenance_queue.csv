@@ -1,0 +1,101 @@
+unit_id,predicted_rul,model_disagreement,risk_tier,review_flag,urgency_score,queue_position,recommended_action
+34,5.1563525,3.1105132,Critical,Normal,16.243383,1,Schedule immediately
+42,5.3913636,5.8333106,Critical,Normal,15.646113,2,Schedule immediately
+81,6.009723,1.5318584,Critical,Normal,14.265899,3,Schedule immediately
+82,6.15986,5.139734,Critical,Normal,13.966753,4,Schedule immediately
+68,6.801624,5.306049,Critical,Normal,12.817844,5,Schedule immediately
+76,7.1783166,3.6441312,Critical,Normal,12.227456,6,Schedule immediately
+31,8.60669,3.0330963,Critical,Normal,10.409412,7,Schedule immediately
+35,9.841004,1.2904663,Critical,Normal,9.224237,8,Schedule immediately
+56,14.963373,0.7501745,Critical,Normal,6.2643404,9,Schedule immediately
+20,16.981056,1.0398445,High,Normal,5.5614085,10,Schedule soon
+49,17.892174,1.180397,High,Normal,5.293197,11,Schedule soon
+100,18.274958,0.85894585,High,Normal,5.188079,12,Schedule soon
+24,19.94357,0.4734974,High,Normal,4.7747355,13,Schedule soon
+66,20.594828,2.7845936,High,Normal,4.6307387,14,Schedule soon
+61,23.276764,3.6621723,High,Normal,4.119165,15,Schedule soon
+92,24.122526,3.7130642,High,Normal,3.9804914,16,Schedule soon
+64,24.353195,3.1041718,High,Normal,3.944276,17,Schedule soon
+41,24.69084,4.5578175,High,Normal,3.892438,18,Schedule soon
+36,25.655344,1.4561062,High,Normal,3.7515929,19,Schedule soon
+37,27.77795,4.4798164,High,Normal,3.4748826,20,Schedule soon
+77,27.80477,2.3622532,High,Normal,3.4716473,21,Schedule soon
+91,29.18046,5.171444,High,Normal,3.3134022,22,Schedule soon
+90,29.729036,0.8947735,High,Normal,3.254251,23,Schedule soon
+53,31.464739,0.96284294,Medium,Normal,3.0802653,24,Monitor closely
+52,34.741234,5.2880707,Medium,Normal,2.7978888,25,Monitor closely
+18,35.437706,7.510824,Medium,Normal,2.7444098,26,Monitor closely
+40,35.78971,3.446289,Medium,Normal,2.7181513,27,Monitor closely
+58,41.949883,1.761486,Medium,Normal,2.328295,28,Monitor closely
+62,43.195972,3.6138802,Medium,Normal,2.2626495,29,Monitor closely
+46,44.06682,7.983322,Medium,Normal,2.2189274,30,Monitor closely
+17,49.0969,0.010791779,Medium,Normal,1.9961314,31,Monitor closely
+3,50.50383,5.0378647,Medium,Normal,1.9416032,32,Monitor closely
+32,50.69345,2.5721817,Medium,Normal,1.934481,33,Monitor closely
+93,55.979862,6.787037,Medium,Normal,1.755006,34,Monitor closely
+72,56.515408,6.3872223,Medium,Normal,1.7386645,35,Monitor closely
+38,57.36628,2.7985153,Medium,Normal,1.713318,36,Monitor closely
+43,59.445724,9.635811,Medium,Normal,1.6543767,37,Monitor closely
+98,65.13854,8.797768,Low,Normal,1.5119777,38,Continue normal monitoring
+21,66.44699,1.3053818,Low,Normal,1.4826459,39,Continue normal monitoring
+13,69.559906,4.1803055,Low,Normal,1.4172355,40,Continue normal monitoring
+94,71.412674,9.615181,Low,Normal,1.3809737,41,Continue normal monitoring
+84,78.21919,8.630608,Low,Normal,1.2623204,42,Continue normal monitoring
+97,79.202896,4.875786,Low,Normal,1.2468377,43,Continue normal monitoring
+45,79.35569,11.873985,Low,Manual review,1.2444669,44,Inspect / review prediction
+10,79.91069,2.1830826,Low,Normal,1.2359307,45,Continue normal monitoring
+4,80.3134,0.8725815,Low,Normal,1.2298096,46,Continue normal monitoring
+50,83.51437,1.2429123,Low,Normal,1.1832306,47,Continue normal monitoring
+19,83.77186,16.956581,Low,Manual review,1.1796367,48,Inspect / review prediction
+11,87.9997,20.880531,Low,Manual review,1.1235993,49,Inspect / review prediction
+63,89.12038,11.123421,Low,Manual review,1.109627,50,Inspect / review prediction
+70,89.398476,8.551033,Low,Normal,1.1062133,51,Continue normal monitoring
+16,93.03,0.33128357,Low,Normal,1.0634904,52,Continue normal monitoring
+27,93.83806,5.548973,Low,Normal,1.054429,53,Continue normal monitoring
+73,94.65196,3.226799,Low,Normal,1.0454569,54,Continue normal monitoring
+29,96.2758,5.4760056,Low,Normal,1.0280049,55,Continue normal monitoring
+12,97.64567,8.260941,Low,Normal,1.0137292,56,Continue normal monitoring
+51,98.016495,32.47072,Low,Manual review,1.0099328,57,Inspect / review prediction
+80,98.1669,4.1551743,Low,Normal,1.008401,58,Continue normal monitoring
+95,98.363914,8.35334,Low,Normal,1.0064015,59,Continue normal monitoring
+8,99.6463,2.9106598,Low,Normal,0.9935785,60,Continue normal monitoring
+7,100.93109,3.2128525,Low,Normal,0.98105496,61,Continue normal monitoring
+75,101.128654,3.2569733,Low,Normal,0.97915715,62,Continue normal monitoring
+15,101.96954,10.588905,Low,Manual review,0.97116095,63,Inspect / review prediction
+44,103.34647,11.465042,Low,Manual review,0.9583458,64,Inspect / review prediction
+71,103.67497,12.093727,Low,Manual review,0.9553382,65,Inspect / review prediction
+59,105.42345,6.7439804,Low,Normal,0.93964255,66,Continue normal monitoring
+74,106.74551,0.8881531,Low,Normal,0.9281129,67,Continue normal monitoring
+5,106.872375,3.4009933,Low,Normal,0.9270214,68,Continue normal monitoring
+55,107.08467,4.967293,Low,Normal,0.9252006,69,Continue normal monitoring
+48,107.74393,2.3341217,Low,Normal,0.9195916,70,Continue normal monitoring
+28,108.516556,0.027870178,Low,Normal,0.91310394,71,Continue normal monitoring
+79,109.29587,21.748344,Low,Manual review,0.9066523,72,Inspect / review prediction
+25,109.60874,10.689453,Low,Manual review,0.90408766,73,Inspect / review prediction
+26,111.02115,7.0701675,Low,Normal,0.8926886,74,Continue normal monitoring
+1,112.820366,1.2905045,Low,Normal,0.8785774,75,Continue normal monitoring
+89,113.3847,1.7777557,Low,Normal,0.87424284,76,Continue normal monitoring
+96,113.616234,0.9356079,Low,Normal,0.87247676,77,Continue normal monitoring
+60,113.945206,4.8382645,Low,Normal,0.86997974,78,Continue normal monitoring
+57,114.151436,17.817322,Low,Manual review,0.8684217,79,Inspect / review prediction
+87,114.51523,6.0606613,Low,Normal,0.8656867,80,Continue normal monitoring
+86,114.808174,1.1050568,Low,Normal,0.8634969,81,Continue normal monitoring
+30,115.17475,18.702301,Low,Manual review,0.86077225,82,Inspect / review prediction
+6,115.68822,15.984322,Low,Manual review,0.85698456,83,Inspect / review prediction
+47,116.72203,7.771965,Low,Normal,0.8494587,84,Continue normal monitoring
+88,117.52338,6.8961945,Low,Normal,0.8437154,85,Continue normal monitoring
+67,117.851654,2.7586517,Low,Normal,0.841385,86,Continue normal monitoring
+33,117.92946,3.1158981,Low,Normal,0.84083456,87,Continue normal monitoring
+14,118.64068,7.0028152,Low,Normal,0.8358361,88,Continue normal monitoring
+54,119.0567,0.6251373,Low,Normal,0.83293974,89,Continue normal monitoring
+9,119.18309,0.00061798096,Low,Normal,0.8320638,90,Continue normal monitoring
+69,119.40768,2.3851013,Low,Normal,0.8305118,91,Continue normal monitoring
+65,119.47373,14.105934,Low,Manual review,0.8300565,92,Inspect / review prediction
+22,120.14338,0.4100647,Low,Normal,0.8254681,93,Continue normal monitoring
+99,120.181206,3.857727,Low,Normal,0.82521045,94,Continue normal monitoring
+23,120.24045,11.519363,Low,Manual review,0.8248072,95,Inspect / review prediction
+2,120.5603,6.014412,Low,Normal,0.82263696,96,Continue normal monitoring
+83,121.95076,1.1144791,Low,Normal,0.81333375,97,Continue normal monitoring
+39,122.303024,1.3289642,Low,Normal,0.8110101,98,Continue normal monitoring
+85,122.739555,0.81196594,Low,Normal,0.80814904,99,Continue normal monitoring
+78,123.87809,4.0283203,Low,Normal,0.800781,100,Continue normal monitoring
