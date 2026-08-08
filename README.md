@@ -1,18 +1,31 @@
 # Intelligent Predictive Maintenance
 
-An end-to-end AI-powered predictive maintenance system for turbofan engines using machine learning and deep learning to estimate **Remaining Useful Life (RUL)** and support maintenance decision-making.
+An end-to-end predictive maintenance system for turbofan engines using machine learning and deep learning to estimate **Remaining Useful Life (RUL)** and support capacity-constrained maintenance decision-making.
 
 ---
 
-# Overview
+## Overview
 
-Predictive maintenance is more than forecasting equipment failure. The real objective is to understand equipment degradation, estimate the remaining operational life of an asset, and translate model predictions into actionable maintenance decisions.
+Predictive maintenance is more than forecasting equipment failure. The practical objective is to understand equipment degradation, estimate the remaining operational life of an asset, and translate those predictions into actionable maintenance decisions.
 
-This project presents a complete predictive maintenance pipeline using the NASA C-MAPSS turbofan engine degradation dataset. The workflow integrates data preparation, feature engineering, machine learning, deep learning, explainable AI, and a PEAS-based maintenance decision-support agent to demonstrate how AI can support maintenance planning under maintenance capacity constraints.
+This project uses the **NASA C-MAPSS turbofan engine degradation dataset (FD001)** to develop an end-to-end predictive maintenance workflow.
+
+The project combines:
+
+- exploratory degradation analysis,
+- leakage-safe feature engineering,
+- classical machine-learning models,
+- LSTM and GRU sequence models,
+- explainable AI using feature importance and SHAP,
+- official NASA test-set evaluation,
+- a PEAS-based maintenance decision-support framework, and
+- a simplified Mixed-Integer Linear Programming (MILP) model for maintenance scheduling under limited capacity.
+
+The final workflow therefore connects **predictive modeling** with **prescriptive maintenance decision support**.
 
 ---
 
-# Project Workflow
+## Project Workflow
 
 ```text
 Engine Sensor Data
@@ -21,125 +34,91 @@ Engine Sensor Data
 Data Preparation & Exploratory Data Analysis
         │
         ▼
-Feature Engineering
+RUL Target Construction
         │
         ▼
-Remaining Useful Life (RUL) Prediction
- ┌───────────────────────────────┐
- │ Machine Learning              │
- │ • Linear Regression           │
- │ • Random Forest               │
- │ • Gradient Boosting           │
- │ • XGBoost                     │
- └───────────────────────────────┘
-                │
-                ▼
- ┌───────────────────────────────┐
- │ Deep Learning                 │
- │ • LSTM                        │
- │ • GRU                         │
- └───────────────────────────────┘
-                │
-                ▼
-Model Evaluation & Explainability
-(Feature Importance & SHAP)
-                │
-                ▼
-PEAS-based Maintenance
+Leakage-Safe Feature Engineering
+        │
+        ▼
+Machine Learning Models
+• Linear Regression
+• Random Forest
+• Gradient Boosting
+• XGBoost
+        │
+        ▼
+Sequence Models
+• LSTM
+• GRU
+        │
+        ▼
+Model Evaluation
+• RMSE
+• MAE
+• Asymmetric C-MAPSS Score
+        │
+        ▼
+Explainability
+• Feature Importance
+• SHAP
+        │
+        ▼
+Official NASA Test Evaluation
+        │
+        ▼
+PEAS-Based Maintenance
 Decision-Support Agent
+        │
+        ▼
+Capacity-Constrained MILP
+Maintenance Scheduling
 ```
 
 ---
 
-# Repository Guide
+## Dataset
 
-The project was developed incrementally across multiple notebooks before being consolidated into a single reproducible workflow.
+This project uses the **FD001 subset** of the NASA C-MAPSS Jet Engine Simulated Data.
 
-| Notebook | Purpose |
-|----------|---------|
-| 01_data_preparation_eda_degradation_analysis.ipynb | Data preparation and exploratory data analysis |
-| 02_eda_baseline_ml_rul_prediction.ipynb | Baseline machine learning models |
-| 03_advanced_ml_modeling.ipynb | Advanced machine learning models |
-| 04_deep_learning_rul_prediction.ipynb | Deep learning models (LSTM & GRU) |
-| 05_maintenance_decision_support.ipynb | PEAS-based maintenance decision-support agent |
-| **06_end_to_end_intelligent_predictive_maintenance.ipynb** | **Complete end-to-end implementation of the project** |
+FD001 contains:
 
-> **For project evaluation, only `06_end_to_end_intelligent_predictive_maintenance.ipynb` needs to be executed.**
->
-> Notebooks **01–05** document the incremental development of individual project components and are included for transparency and reference.
+- 100 training engines,
+- 100 test engines,
+- one operating condition,
+- one fault mode,
+- 3 operational settings, and
+- 21 sensor measurements recorded over engine operating cycles.
 
----
+The training trajectories run until failure. The official test trajectories stop before failure, and NASA provides the Remaining Useful Life for the final observed cycle of each test engine.
 
-# Project Objectives
+### Required Raw Files
 
-- Analyze engine degradation using multivariate sensor measurements.
-- Predict Remaining Useful Life (RUL) of turbofan engines.
-- Compare traditional machine learning and deep learning approaches.
-- Engineer temporal features for tabular models.
-- Evaluate sequence learning using LSTM and GRU.
-- Explain model predictions using Feature Importance and SHAP.
-- Demonstrate AI-assisted maintenance prioritization through a PEAS-based decision-support agent.
+The following files are required:
 
----
+```text
+train_FD001.txt
+test_FD001.txt
+RUL_FD001.txt
+```
 
-# Dataset
+Place them in:
 
-This project uses the **NASA C-MAPSS Jet Engine Simulated Data**.
+```text
+data/raw/CMAPSSData/
+```
 
-The implementation focuses on the **FD001** subset, which represents:
-
-- Single operating condition
-- Single fault mode
-
-Each engine contains sequential observations consisting of:
-
-- Engine identifier
-- Operating cycle
-- Three operating settings
-- Twenty-one sensor measurements
+The final notebook checks for these files before beginning the analysis and raises a clear error if they are missing.
 
 ---
 
-# Models Implemented
-
-## Machine Learning
-
-- Linear Regression
-- Random Forest
-- Gradient Boosting Regressor
-- XGBoost Regressor
-
-## Deep Learning
-
-- Long Short-Term Memory (LSTM)
-- Gated Recurrent Unit (GRU)
-
----
-
-# Evaluation Metrics
-
-Models are evaluated using:
-
-- Root Mean Squared Error (RMSE)
-- Mean Absolute Error (MAE)
-- NASA C-MAPSS asymmetric scoring function
-
-Model behaviour is further interpreted using:
-
-- Feature Importance
-- SHAP
-- Prediction error analysis
-- Predicted vs. Actual RUL comparisons
-
----
-
-# Repository Structure
+## Repository Structure
 
 ```text
 intelligent-predictive-maintenance/
 │
 ├── data/
 │   ├── raw/
+│   │   └── CMAPSSData/
 │   ├── processed/
 │   └── predictions/
 │
@@ -157,81 +136,178 @@ intelligent-predictive-maintenance/
 │   ├── figures/
 │   └── reports/
 │
-├── LICENSE
 ├── README.md
 ├── pyproject.toml
 ├── uv.lock
 ├── .python-version
-└── .gitignore
+└── LICENSE
+```
+
+The first five notebooks document the incremental development of the project.
+
+For reproducing the complete final analysis, use:
+
+```text
+notebooks/06_end_to_end_intelligent_predictive_maintenance.ipynb
 ```
 
 ---
 
-# Running the Project
+## Methodology
 
-## 1. Clone the repository
+### 1. Data Preparation and RUL Construction
+
+The raw C-MAPSS files are loaded and organized by engine and operating cycle.
+
+Remaining Useful Life is calculated for each training observation as:
+
+```text
+RUL = final engine cycle - current cycle
+```
+
+A piecewise-linear RUL target capped at **125 cycles** is used to reduce emphasis on differences during the early healthy-life region.
+
+---
+
+### 2. Leakage-Safe Model Development
+
+Because each engine contributes many temporally related observations, random row-level splitting could allow cycles from the same engine to appear in both training and validation data.
+
+To avoid this leakage, model development uses **engine-level splitting**.
+
+Feature screening, scaling, cross-validation, hyperparameter selection, and recurrent-model selection are performed without using the official NASA test labels.
+
+---
+
+### 3. Feature Engineering
+
+Tabular models use the available nonconstant sensor measurements together with backward-looking temporal features for selected degradation-sensitive sensors.
+
+These include:
+
+- first differences,
+- rolling means,
+- rolling standard deviations, and
+- deviations from recent rolling means.
+
+All temporal features use only the current and previous engine observations.
+
+---
+
+### 4. Machine Learning Models
+
+The project evaluates:
+
+- Mean prediction baseline
+- Linear Regression
+- Random Forest
+- Gradient Boosting
+- XGBoost
+
+XGBoost hyperparameters are selected using grouped cross-validation so that observations from the same engine remain within the same fold.
+
+---
+
+### 5. Deep Learning Models
+
+LSTM and GRU recurrent neural networks are used to learn degradation directly from ordered sensor histories.
+
+Each sequence contains the previous **30 operating cycles** for an engine.
+
+A bounded architecture comparison is performed for both model families, with early stopping used during development.
+
+---
+
+### 6. Model Evaluation
+
+Models are evaluated using:
+
+- **RMSE** — overall prediction error with greater penalty on large errors,
+- **MAE** — average absolute prediction error, and
+- **C-MAPSS Score** — an asymmetric prognostics metric that penalizes late RUL predictions more heavily than early predictions.
+
+The official NASA test set is reserved for final evaluation.
+
+The final comparison evaluates XGBoost, LSTM, and GRU on the **same 100 official FD001 test-engine endpoints**.
+
+---
+
+### 7. Explainability
+
+Tree-based models are examined using:
+
+- feature importance, and
+- SHAP values.
+
+These methods help identify which sensor and temporal features contribute most strongly to model predictions.
+
+---
+
+### 8. PEAS-Based Maintenance Decision Support
+
+The selected recurrent model's RUL predictions are translated into a maintenance decision-support framework using **PEAS**:
+
+- **Performance measure:** reduce risky maintenance delay while respecting limited capacity.
+- **Environment:** the engine fleet and available maintenance slots.
+- **Actuators:** schedule an engine, defer maintenance beyond the current planning horizon, or continue monitoring.
+- **Sensors:** predicted RUL, derived risk tier, and LSTM-GRU model disagreement.
+
+Model disagreement is used only as a practical **human-review signal** and is not treated as a calibrated confidence interval.
+
+---
+
+### 9. Capacity-Constrained MILP Scheduling
+
+A simplified **Mixed-Integer Linear Programming (MILP)** model converts the predictive output into a capacity-constrained maintenance schedule.
+
+The optimization determines whether an eligible engine should be:
+
+- scheduled in planning period 1,
+- scheduled in planning period 2,
+- scheduled in planning period 3, or
+- deferred beyond the current planning horizon.
+
+The objective minimizes maintenance delay relative to predicted RUL while enforcing:
+
+- one maintenance decision per eligible engine,
+- limited maintenance capacity per period, and
+- scheduling of Critical engines within the planning horizon when sufficient total capacity exists.
+
+The maintenance periods, risk thresholds, and available maintenance slots are **simulated assumptions for demonstrating the decision-support framework**. They are not operational rules provided by NASA.
+
+---
+
+## Installation and Reproduction
+
+### Option 1 — Local Machine / Jupyter
+
+Python **3.11** is recommended.
+
+Clone the repository:
 
 ```bash
 git clone <repository-url>
 cd intelligent-predictive-maintenance
 ```
 
----
-
-## 2. Install dependencies
-
-This project uses **uv** for dependency management.
+Install the project dependencies using `uv`:
 
 ```bash
 uv sync
 ```
 
-Activate the virtual environment.
+The project dependencies are defined in `pyproject.toml`, and `uv.lock` provides the locked environment used for reproducibility.
 
-### macOS / Linux
-
-```bash
-source .venv/bin/activate
-```
-
-### Windows
-
-```powershell
-.venv\Scripts\activate
-```
-
----
-
-## 3. Download the NASA FD001 dataset
-
-Place the following files inside:
+Ensure the FD001 raw files are located at:
 
 ```text
 data/raw/CMAPSSData/
 ```
 
-Required files:
-
-```text
-train_FD001.txt
-test_FD001.txt
-RUL_FD001.txt
-```
-
-The notebook automatically validates that these files exist before execution.
-
----
-
-## 4. Launch Jupyter
+Then launch Jupyter:
 
 ```bash
-jupyter lab
-```
-
-or
-
-```bash
-jupyter notebook
+uv run jupyter lab
 ```
 
 Open:
@@ -240,97 +316,167 @@ Open:
 notebooks/06_end_to_end_intelligent_predictive_maintenance.ipynb
 ```
 
-Select:
+and select:
 
 ```text
-Kernel → Restart Kernel and Run All Cells
+Restart Kernel and Run All Cells
 ```
 
-No project paths need to be modified manually.
+The notebook automatically locates the repository root, so no machine-specific file paths need to be edited.
+
+Generated directories and outputs are created automatically where needed.
 
 ---
 
-# Generated Outputs
+## Google Colab
 
-Running the final notebook automatically generates:
+The notebook uses repository-relative paths. Therefore, when using Google Colab, the **full repository must be available in the Colab runtime** rather than opening only the notebook file.
+
+In a Colab cell, clone the repository:
+
+```python
+!git clone <repository-url>
+%cd intelligent-predictive-maintenance
+```
+
+Install the required dependencies:
+
+```python
+!pip install -e .
+```
+
+Verify that the required FD001 files exist under:
 
 ```text
-data/
-├── processed/
-└── predictions/
+data/raw/CMAPSSData/
+```
 
+Then run the final notebook.
+
+> **Note:** Opening the `.ipynb` file directly from GitHub in Colab without cloning the repository will not provide the notebook with the required `data/`, `notebooks/`, and project files. Clone the full repository first.
+
+---
+
+## Reproducibility
+
+The project is designed so that no machine-specific paths are required.
+
+The final notebook:
+
+- dynamically locates the repository root,
+- validates the presence of required FD001 input files,
+- automatically creates generated-data and output directories,
+- uses fixed random seeds for the primary experiments,
+- uses engine-level splitting to prevent data leakage,
+- preserves the official NASA test set for final evaluation, and
+- saves model artifacts, predictions, figures, and reports to structured repository directories.
+
+For the cleanest reproduction test:
+
+```text
+Clone repository
+      ↓
+Install dependencies
+      ↓
+Verify FD001 raw files
+      ↓
+Open Notebook 06
+      ↓
+Restart Kernel
+      ↓
+Run All Cells
+```
+
+---
+
+## Generated Outputs
+
+Running the final notebook generates artifacts including:
+
+### Models
+
+```text
 models/
-
-outputs/
-├── figures/
-└── reports/
 ```
 
-These include:
+Contains the final trained LSTM and GRU model checkpoints and preprocessing metadata.
 
-- Processed datasets
-- Engine metadata
-- Model predictions
-- Saved deep learning models
-- Evaluation metrics
-- Feature importance and SHAP visualizations
-- Maintenance prioritization outputs
-- Capacity analysis results
+### Predictions
 
----
+```text
+data/predictions/
+```
 
-# Reproducibility
+Contains official NASA test predictions and model comparison outputs.
 
-This project was designed for reproducible execution.
+### Figures
 
-- Project-relative file paths (no machine-specific paths)
-- Python version managed through `.python-version`
-- Dependencies managed using `pyproject.toml`
-- Locked package versions via `uv.lock`
-- Automatic creation of required output directories
-- Automatic validation of required dataset files
-- Fixed random seeds
-- Engine-level train/validation split to prevent data leakage
-- Sequential deep learning models trained on complete engine trajectories
-- Official NASA test set reserved for final evaluation
+```text
+outputs/figures/
+```
+
+Contains degradation plots, model diagnostics, feature-importance plots, SHAP outputs, learning curves, and actual-versus-predicted RUL figures.
+
+### Reports
+
+```text
+outputs/reports/
+```
+
+Contains evaluation summaries and maintenance decision-support outputs, including the optimized maintenance schedule.
 
 ---
 
-# PEAS-based Maintenance Decision-Support Agent
+## Key Limitations
 
-The final stage of the project demonstrates how predicted Remaining Useful Life can support maintenance planning.
+This project is a course-scale decision-support prototype rather than a production aviation maintenance system.
 
-The decision-support agent:
+Important limitations include:
 
-- Classifies engines into maintenance risk tiers
-- Prioritizes engines using predicted Remaining Useful Life
-- Generates a maintenance queue
-- Evaluates maintenance capacity constraints
-- Estimates remaining maintenance backlog
+- FD001 contains only one operating condition and one fault mode.
+- C-MAPSS contains simulated rather than live airline operating data.
+- The 125-cycle RUL cap is a modeling assumption supported by prior C-MAPSS research.
+- Recurrent-model results use a fixed primary random seed rather than repeated multi-seed experiments.
+- RUL predictions are point estimates rather than calibrated predictive distributions.
+- LSTM-GRU disagreement is not a formal uncertainty interval.
+- Maintenance thresholds and capacity assumptions are simulated.
+- The MILP does not model actual staffing, hangar availability, maintenance duration, spare parts, mission schedules, or preventive/corrective maintenance costs.
 
-The objective is to illustrate how predictive models can support operational maintenance decisions rather than being used solely for prediction.
-
----
-
-# Academic Context
-
-Developed as part of
-
-**AAI 501 – Introduction to Artificial Intelligence**
-
-Master of Science in Applied Artificial Intelligence
+These limitations are intentionally stated so that the maintenance optimization is interpreted as a demonstration of how RUL predictions can support constrained decision-making rather than as a deployable airline scheduling system.
 
 ---
 
-# Team
+## Research Context
 
-- Sudhakaran Srinivasan
-- Ivan Da Silva
-- Russell Miller
-- Mina Habib
+The project methodology was informed by prior work on RUL prediction and predictive-maintenance decision support, including research showing the importance of temporal degradation modeling and connecting prognostic predictions to downstream maintenance decisions.
+
+Key references include:
+
+- Cao, X., Li, P., & Ming, S. (2021). Remaining useful life prediction-based maintenance decision model for stochastic deterioration equipment under data-driven. *Sustainability, 13*(15), 8548.
+- Kamariotis, A., Tatsis, K., Chatzi, E., Goebel, K., & Straub, D. (2024). A metric for assessing and optimizing data-driven prognostic algorithms for predictive maintenance. *Reliability Engineering & System Safety, 242*, 109723.
+- Mitici, M., de Pater, I., Barros, A., & Zeng, Z. (2023). Dynamic predictive maintenance for multiple components using data-driven probabilistic RUL prognostics: The case of turbofan engines. *Reliability Engineering & System Safety, 234*, 109199.
+- Wang, L., Li, B., & Zhao, X. (2024). Multi-objective predictive maintenance scheduling models integrating remaining useful life prediction and maintenance decisions. *Computers & Industrial Engineering, 197*, 110581.
+
+The maintenance optimization in this repository is intentionally simpler than the multi-component and multi-objective formulations used in published research. Its purpose is to demonstrate the progression from **RUL prediction → maintenance priority → constrained scheduling** within the scope of the course project.
 
 ---
 
-# License
+## Final Project Objective
 
-This project is licensed under the MIT License.
+The project demonstrates how an ML/AI predictive-maintenance workflow can move beyond simply predicting equipment failure:
+
+```text
+Sensor Data
+    ↓
+Predict Remaining Useful Life
+    ↓
+Understand Prediction Drivers
+    ↓
+Assess Maintenance Urgency
+    ↓
+Allocate Limited Maintenance Capacity
+    ↓
+Support Maintenance Decisions
+```
+
+The result is an end-to-end demonstration of how predictive modeling and optimization can work together to support data-driven maintenance planning.
